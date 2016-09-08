@@ -1,4 +1,4 @@
-package aianash.ml
+package aianash.behaviour
 
 import com.sun.jna.{Library, Native}
 

@@ -39,23 +39,23 @@ object AianashBuild extends Build with StandardLibraries {
     base = file("."),
     settings = Project.defaultSettings ++
       sharedSettings
-  ).aggregate(ml)
+  ).aggregate(behaviour)
 
 
-  lazy val ml = Project(
-    id = "aianash-ml",
-    base = file("ml"),
+  lazy val behaviour = Project(
+    id = "aianash-behaviour",
+    base = file("behaviour"),
     settings = Project.defaultSettings ++
       sharedSettings
   )
   .enablePlugins(JavaAppPackaging)
   .settings(
-    name := "aianash-ml",
+    name := "aianash-behaviour",
     libraryDependencies ++= Seq(
     ) ++ Libs.jna,
   makeScript <<= (stage in Universal, stagingDirectory in Universal, baseDirectory in ThisBuild, streams) map { (_, dir, cwd, streams) =>
-      var path = dir / "bin" / "aianash-ml"
-      sbt.Process(Seq("ln", "-sf", path.toString, "aianash-ml"), cwd) ! streams.log
+      var path = dir / "bin" / "aianash-behaviour"
+      sbt.Process(Seq("ln", "-sf", path.toString, "aianash-behaviour"), cwd) ! streams.log
     }
   )
 
